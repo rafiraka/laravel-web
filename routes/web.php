@@ -7,7 +7,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
 
 Route::get('/pcr', function () {
-    return 'selamat datang di website kampus pcr !';
+    return 'selamat datang di website kampus politeknik caltex riau !';
 });
 
 
