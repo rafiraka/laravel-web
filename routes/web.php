@@ -33,3 +33,5 @@ Route::get('/about', function () {
 Route::get('/matakuliah/show/{id?}', [MatakuliahController::class, 'show']);
 
 Route::resource('matakuliah', MatakuliahController::class);
+
+//hahahahahaha
