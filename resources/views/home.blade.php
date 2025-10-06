@@ -45,12 +45,11 @@
     {{-- Konten Utama Halaman Home --}}
     <main class="container my-5">
 
-        {{-- Hero Section / Jumbotron --}}
+        {{-- Hero Section --}}
         <div class="p-5 mb-4 bg-light rounded-3 text-center">
             <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">{{ $username }}</h1>
-                <p class="fs-4 col-md-8 mx-auto">{{ $last_login }}</p>
-                <a href="#" class="btn btn-primary btn-lg mt-3">Pelajari Lebih Lanjut</a>
+                <h1 class="display-5 fw-bold">Heroku
+                    <p class="fs-4 col-md-8 mx-auto"></p>
             </div>
         </div>
 
@@ -75,9 +74,18 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Form Pertanyaan</h5>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <form action="{{ route('question.store') }}" method="POST">
                                 @csrf
-                                
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama</label>
                                     <input type="text" name="nama" class="form-control">
@@ -85,10 +93,11 @@
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="text" name="email" class="form-control">
+
                                 </div>
                                 <div class="mb-3">
                                     <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                                    <textarea name="pernyataan" class="form-control" rows="4"></textarea>
+                                    <textarea name="pernyataan"class="form-control" rows="4"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
                             </form>
