@@ -1,0 +1,14 @@
+.navbar-logo{
+    height: 40px;
+    weight: auto;
+
+}
+
+@font-face {
+    font-family: 'raka';
+    src: url('../fonts/raka.ttf'));
+}
+
+.font-custom{
+    font-family: 'raka';
+}
