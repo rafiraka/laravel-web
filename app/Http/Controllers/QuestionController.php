@@ -56,7 +56,7 @@ class QuestionController extends Controller
         // Redirect ke URL eksternal
         //return redirect()->away('https://www.example.com');
 
-        return redirect()->route('home')->with('info', 'Terimakasih raka! Pertanyaan ini: Tolong jelaskan bagaimana cara mendaftar di PCR akan segera direspon melalui email rakar.ac.id!');
+        return redirect()->route('home')->with('info', 'Terimakasih raka! Pertanyaan ini: Tolong jelaskan bagaimana cara mendaftar di PCR akan segera direspon melalui email rafi24ti@mahasiswa.pcr.ac.id!');
     }
 
     /**

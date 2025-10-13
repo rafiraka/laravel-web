@@ -115,8 +115,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title font-custom
-                        ">Mudah Dikustomisasi</h5>
+                        <h5 class="card-title font-custom">Mudah Dikustomisasi</h5>
                         <p class="card-text">Kode yang rapi dan terstruktur, memudahkan Anda untuk mengubah konten sesuai kebutuhan proyek.</p>
                     </div>
                 </div>
