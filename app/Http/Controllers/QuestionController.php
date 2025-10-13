@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -29,51 +30,64 @@ class QuestionController extends Controller
         //dd($request->all());
 
         $request->validate([
-            'nama'       => 'required|max:10',
-            'email'      => ['required', 'email'],
+            'nama'  => 'required|max:10',
+            'email' => ['required','email'],
             'pertanyaan' => 'required|max:300|min:8',
         ], [
-            'nama.required' => 'Nama tidak boleh kosong',
-            'email.email'   => 'Email Tidak valid', 
-
+            'nama.required'=> 'Nama tidak boleh kosong',
+            'email.email' => 'Email tidak valid'
         ]);
 
-            // $data['nama']       = $request->nama;
-            // $data['email']      = $request->email;
-            // $data['pertanyaan'] = $request->pertanyaan;
+        $data['nama'] = $request -> nama;
+        $data['email'] = $request -> email;
+        $data['pertanyaan'] = $request -> pertanyaan;
 
-            return view('home-question-respon', $data);
-        }
+        //return view ('home-question-respon', $data);
 
-        /**
-         * Display the specified resource.
-         */
-        public function show(string $id)
-    {
-            //
-        }
+        //return redirect()->route('home');
+        //return redirect()->away('https://pcr.ac.id/');
 
-        /**
-         * Show the form for editing the specified resource.
-         */
-        public function edit(string $id)
-    {
-            //
-        }
+        // Redirect ke route yang memiliki alias 'home'
+       // return redirect()->route('home');
 
-        /**
-         * Update the specified resource in storage.
-         */
-        public function update(Request $request, string $id)
-    {
-            //
-        }
+        //Redirect ke halaman sebelumnya
+       // return redirect()->back();
 
-        /**
-         * Remove the specified resource from storage.
-         */
-        public function destroy(string $id)
-    {
-            //
-        }
+        // Redirect ke URL eksternal
+        //return redirect()->away('https://www.example.com');
+
+        return redirect()->route('home')->with('info', 'Terimakasih raka! Pertanyaan ini: Tolong jelaskan bagaimana cara mendaftar di PCR akan segera direspon melalui email rakar.ac.id!');
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}
