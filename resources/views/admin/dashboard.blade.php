@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@section('title', 'Dashboard')
-@section('content ')
+@section('title, List Pelanggan')
+@section('content')
 
     <div class="py-4">
       <div class="dropdown">
@@ -612,4 +612,4 @@
         </div>
       </div>
     </div>
-
+    @endsection
