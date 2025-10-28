@@ -12,6 +12,10 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
 
+Route::get('/', function () {
+    return view('welcome'); // <-- Pastikan route ini ada!
+});
+
 Route::get('/home', [HomeController::class, 'index'])->name(name:'home');
 
 Route::post('question/store', [QuestionController::class, 'store'])
