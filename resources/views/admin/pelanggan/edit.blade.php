@@ -12,14 +12,14 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Pelanggan</li>
+                    <li class="breadcrumb-item"><a href="#">Mahasiswa</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tambah Mahasiswa</li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-between w-100 flex-wrap">
                 <div class="mb-3 mb-lg-0">
-                    <h1 class="h4">Tambah Pelanggan</h1>
-                    <p class="mb-0">Form untuk menambahkan data pelanggan baru.</p>
+                    <h1 class="h4">Tambah Mahasiswa</h1>
+                    <p class="mb-0">Form untuk menambahkan data Mahasiswa baru.</p>
                 </div>
                 <div>
                     <a href="{{ route('pelanggan.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i> Kembali</a>
@@ -37,46 +37,33 @@
                             <div class="row mb-4">
                                 <div class="col-lg-4 col-sm-6">
                                     <!-- First Name -->
-                                    <div class="mb-3">
-                                        <label for="first_name" class="form-label">First name</label>
-                                        <input type="text" id="first_name" name="first_name" value="{{ $dataPelanggan->first_name }}" class="form-control" required>
-                                    </div>
-
-                                    <!-- Last Name -->
-                                    <div class="mb-3">
-                                        <label for="last_name" class="form-label">Last name</label>
-                                        <input type="text" id="last_name" name="last_name" value="{{ $dataPelanggan->last_name }}" class="form-control" required>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="first_name" class="form-label">Nama Mahasiswa</label>
+                                    <input type="text" id="first_name" name="first_name" class="form-control" required>
                                 </div>
 
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- Birthday -->
-                                    <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" name="birthday" value="{{ $dataPelanggan->birthday }}" class="form-control">
-                                    </div>
 
-                                    <!-- Gender -->
-                                    <select class="form-select mb-0" id="gender" name="gender" aria-label="Gender select example">
-                                        <option selected>Gender</option>
-                                        <option value="Female" {{ $dataPelanggan->gender == 'Female' ? 'selected' : '' }}>Female</option>
-                                        <option value="Male" {{ $dataPelanggan->gender == 'Male' ? 'selected' : '' }}>Male</option>
-                                    </select>
+                            <!-- Last Name -->
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">jurusan</label>
+                                <input type="text" id="last_name" name="last_name" class="form-control" required>
+                            </div>
+                        </div>
 
-                                </div>
 
-                                <div class="col-lg-4 col-sm-12">
-                                    <!-- Email -->
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" id="email" name="email" value="{{ $dataPelanggan->email }}" class="form-control" required>
-                                    </div>
 
-                                    <!-- Phone -->
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" id="phone" name="phone" value="{{ $dataPelanggan->phone }}" class="form-control">
-                                    </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" id="email" name="email" class="form-control" required>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">NIM</label>
+                                <input type="text" id="phone" name="phone" class="form-control">
+                            </div>
 
                                     <!-- Buttons -->
                                     <div class="">

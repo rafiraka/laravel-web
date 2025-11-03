@@ -20,12 +20,12 @@
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Data Pelanggan</h1>
-            <p class="mb-0">List data seluruh pelanggan</p>
+            <h1 class="h4">Data Mahasiswa</h1>
+            <p class="mb-0">List data seluruh Mahasiswa</p>
         </div>
         <div>
             <a href="{{ route('pelanggan.create') }}" class="btn btn-success text-white"><i
-                    class="far fa-question-circle me-1"></i> Tambah Pelanggan</a>
+                    class="far fa-question-circle me-1"></i> Tambah Mahasiswa</a>
         </div>
     </div>
 </div>
@@ -38,12 +38,12 @@
                     <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
                         <thead class="thead-light">
                             <tr>
-                                <th class="border-0">First Name</th>
-                                <th class="border-0">Last Name</th>
-                                <th class="border-0">Birthday</th>
-                                <th class="border-0">Gender</th>
+                                <th class="border-0">Nama Mahasiswa</th>
+                                <th class="border-0">Jurusan</th>
+                                <th class="border-0">.</th>
+                                <th class="border-0">.</th>
                                 <th class="border-0">Email</th>
-                                <th class="border-0">Phone</th>
+                                <th class="border-0">NIM</th>
                                 <th class="border-0 rounded-end">Action</th>
                             </tr>
                         </thead>
