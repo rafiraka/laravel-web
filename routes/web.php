@@ -62,3 +62,7 @@ Route::resource('pelanggan', PelangganController::class);
 Route::resource('user', UserController::class);
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6a418543a4ea932cde97b2718937f3c025d7e33a
