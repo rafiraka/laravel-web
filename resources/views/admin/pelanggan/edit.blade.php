@@ -12,19 +12,14 @@
                             </svg>
                         </a>
                     </li>
-<<<<<<< HEAD
                     <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
                     <li class="breadcrumb-item active" aria-current="page">edit data</li>
-=======
-                    <li class="breadcrumb-item"><a href="#">Mahasiswa</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Mahasiswa</li>
->>>>>>> 6a418543a4ea932cde97b2718937f3c025d7e33a
                 </ol>
             </nav>
             <div class="d-flex justify-content-between w-100 flex-wrap">
                 <div class="mb-3 mb-lg-0">
-                    <h1 class="h4">Tambah Mahasiswa</h1>
-                    <p class="mb-0">Form untuk menambahkan data Mahasiswa baru.</p>
+                    <h1 class="h4">Tambah Pelanggan</h1>
+                    <p class="mb-0">Form untuk menambahkan data pelanggan baru.</p>
                 </div>
                 <div>
                     <a href="{{ route ('pelanggan.index')}}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i> Kembali</a>
@@ -42,7 +37,6 @@
                             <div class="row mb-4">
                                 <div class="col-lg-4 col-sm-6">
                                     <!-- First Name -->
-<<<<<<< HEAD
                                     <div class="mb-3">
                                         <label>First Name</label>
                                         <input type="text" name="first_name" class="form-control" value="{{ $dataPelanggan->first_name }}">
@@ -89,35 +83,6 @@
                                         <label>Phone</label>
                                         <input type="text" name="phone" class="form-control" value="{{ $dataPelanggan->phone }}">
                                     </div>
-=======
-                                <div class="mb-3">
-                                    <label for="first_name" class="form-label">Nama Mahasiswa</label>
-                                    <input type="text" id="first_name" name="first_name" class="form-control" required>
-                                </div>
-
-
-                            <!-- Last Name -->
-                            <div class="mb-3">
-                                <label for="last_name" class="form-label">jurusan</label>
-                                <input type="text" id="last_name" name="last_name" class="form-control" required>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-lg-4 col-sm-12">
-                            <!-- Email -->
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" id="email" name="email" class="form-control" required>
-                            </div>
-
-                            <!-- Phone -->
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">NIM</label>
-                                <input type="text" id="phone" name="phone" class="form-control">
-                            </div>
->>>>>>> 6a418543a4ea932cde97b2718937f3c025d7e33a
 
                                     <!-- Buttons -->
                                     <div class="">
