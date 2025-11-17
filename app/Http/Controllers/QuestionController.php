@@ -27,36 +27,23 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+       // dd($request->all());
 
-        $request->validate([
-            'nama'  => 'required|max:10',
-            'email' => ['required','email'],
-            'pertanyaan' => 'required|max:300|min:8',
-        ], [
-            'nama.required'=> 'Nama tidak boleh kosong',
-            'email.email' => 'Email tidak valid'
-        ]);
+       	$request->validate([
+		    'nama'  => 'required|max:10',
+		    'email' => ['required','email'],
+		    // 'pertanyaan' => 'required|max:300|min:8',
+        ],[
+            'nama.required'=>'nama tidak boleh kosong',
+            'email.email'=>'email tidak boleh kosong'
+		]);
 
-        $data['nama'] = $request -> nama;
-        $data['email'] = $request -> email;
-        $data['pertanyaan'] = $request -> pertanyaan;
+		//  return redirect()->route(route : 'home');
+        //  return redirect()->back();
+    //    return redirect()->away(path : 'https://pcr.ac.id/');
+     return redirect()->route('home')->with('info', 'Selamat, Kamu Lulus!');
+    //  return redirect()->back()->with('info', 'Oops... Saldo Kamu Kurang!');
 
-        //return view ('home-question-respon', $data);
-
-        //return redirect()->route('home');
-        //return redirect()->away('https://pcr.ac.id/');
-
-        // Redirect ke route yang memiliki alias 'home'
-       // return redirect()->route('home');
-
-        //Redirect ke halaman sebelumnya
-       // return redirect()->back();
-
-        // Redirect ke URL eksternal
-        //return redirect()->away('https://www.example.com');
-
-        return redirect()->route('home')->with('info', 'Terimakasih raka! Pertanyaan ini: Tolong jelaskan bagaimana cara mendaftar di PCR akan segera direspon melalui email rafi24ti@mahasiswa.pcr.ac.id!');
     }
 
     /**

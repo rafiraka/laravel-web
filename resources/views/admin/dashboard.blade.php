@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title, List Pelanggan')
+@section('title', 'dashboard')
 @section('content')
 
     <div class="py-4">
@@ -148,7 +148,7 @@
                       <td class="fw-bolder text-gray-500">
                         <div class="d-flex">
                           <svg class="icon icon-xs text-success me-2" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
+ xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                               d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
                               clip-rule="evenodd"></path>
@@ -348,7 +348,7 @@
                 <h2 class="fs-5 fw-bold mb-0">Progress track</h2>
                 <a href="#" class="btn btn-sm btn-primary">See tasks</a>
               </div>
-              <div class="card-body">
+ <div class="card-body">
                 <!-- Project 1 -->
                 <div class="row mb-4">
                   <div class="col-auto">
@@ -548,7 +548,7 @@
                     Category Rank
                   </div>
                   <div class="small card-stats">
-                    Computers Electronics > Technology
+Computers Electronics > Technology
                     <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd"
