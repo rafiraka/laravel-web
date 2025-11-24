@@ -11,15 +11,15 @@ class PelangganController extends Controller
      */
     public function index(Request $request)
     {
-        // Daftar kolom yang bisa difilter sesuai name pada form
         $filterableColumns = ['gender'];
 
-// Gunakan scope filter untuk memproses query
-        $pageData['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)
-        ->paginate(10)
-        ->withQueryString();
+        $searchableColumns     = ['first_name', 'last_name', 'email']; // Tambahkan ini
+        $data['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)
+            ->search($request, $searchableColumns)
+            ->paginate(10)
+            ->withQueryString();
 
-        return view('admin.pelanggan.index', $pageData);
+        return view('admin.pelanggan.index', $data);
     }
 
     /**
