@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'edit user')
+@section('title', 'Edit user')
 @section('content')
 
     <div class="py-4">
@@ -15,14 +15,14 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="#">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Data</li>
+                <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit User</li>
             </ol>
         </nav>
         <div class="d-flex justify-content-between w-100 flex-wrap">
             <div class="mb-3 mb-lg-0">
                 <h1 class="h4">Edit User</h1>
-                <p class="mb-0">Form untuk mengedit data user.</p>
+                <p class="mb-0">Form untuk edit user.</p>
             </div>
             <div>
                 <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
@@ -35,111 +35,103 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <div class="card-body">
-
-                    <!-- ✅ FLASH MESSAGES -->
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-
                     @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <ul class="mb-0">
+                        <div class="alert alert-danger">
+                            <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li>
+                                        {{ $error }}
+                                    </li>
                                 @endforeach
                             </ul>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-
-                    <form action="{{ route('user.update', $dataUser->id) }}" method="POST">
+                    <form action="{{ route('user.update', $dataUser->id) }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="row mb-4">
-                            <div class="col-lg-6 col-sm-6">
-                                <!-- Name -->
+
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
+                                    <label for="name" class="form-label">Nama</label>
                                     <input type="text" id="name" name="name"
-                                        class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ old('name', $dataUser->name) }}" required>
-                                    @error('name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                        value="{{ old('name', $dataUser->name) }}" class="form-control" required>
                                 </div>
 
-                                <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email <span
-                                            class="text-danger">*</span></label>
-                                    <input type="email" id="email" name="email"
-                                        class="form-control @error('email') is-invalid @enderror"
-                                        value="{{ old('email', $dataUser->email) }}" required>
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" id="email" name="email"
+                                        value="{{ old('email', $dataUser->email) }}" class="form-control" required>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-sm-6">
-                                <!-- Password -->
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" id="password" name="password"
-                                        class="form-control @error('password') is-invalid @enderror">
-                                    <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah password</small>
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <label for="password" class="form-label">Password <small
+                                            class="text-muted">(Opsional)</small></label>
+                                    <input type="password" id="password" name="password" value=""
+                                        class="form-control" placeholder="Kosongkan jika tetap">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
+                                        value="" class="form-control" placeholder="Ulangi password baru">
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Pilih Role</label>
                                     <select name="role" class="form-control" required>
-                                        <option value="">-- Pilih --</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->name }}"
                                                 {{ $dataUser->hasRole($role->name) ? 'selected' : '' }}>
-                                                {{ $role->name }}
+                                                {{ ucfirst($role->name) }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
 
+                            <div class="col-lg-4 col-sm-12">
                                 <div class="mb-3">
-                                    <label>Ganti Foto (Kosongkan jika tidak ingin ganti)</label>
-                                    <input type="file" name="avatar" class="form-control">
+                                    <label for="avatar" class="form-label fw-bold">Foto Profil</label>
 
-                                    @if ($dataUser->avatar)
-                                        <small>Foto saat ini:
-                                            <img src="{{ asset('storage/' . $dataUser->avatar) }}" width="50">
-                                        </small>
-                                    @endif
-                                </div>
+                                    <div class="card shadow-sm mb-2">
+                                        <div class="card-body text-center p-3">
+                                            @if ($dataUser->avatar)
+                                                <img src="{{ asset('storage/' . $dataUser->avatar) }}" alt="Foto User"
+                                                    class="img-fluid rounded mb-2"
+                                                    style="max-height: 150px; object-fit: cover;">
+                                                <p class="small text-muted mb-0">Foto saat ini</p>
+                                            @else
+                                                <div class="bg-light rounded d-flex align-items-center justify-content-center mb-2"
+                                                    style="height: 150px;">
+                                                    <span class="text-muted">Belum ada foto</span>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
 
-                                <!-- Confirm Password -->
-                                <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                                    <input type="password" id="password_confirmation" name="password_confirmation"
-                                        class="form-control @error('password') is-invalid @enderror">
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Buttons -->
-                                <div class="mt-4">
-                                    <button type="submit" class="btn btn-info">Simpan Perubahan</button>
-                                    <a href="{{ route('user.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
+                                    <input type="file" id="avatar" name="avatar" class="form-control">
+                                    <div class="form-text text-muted">
+                                        Biarkan kosong jika tidak ingin mengubah foto. <br>
+                                        Format: JPG, PNG, JPEG. Maks: 2MB.
+                                    </div>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-info"><i class="fas fa-save me-1"></i> Simpan
+                                Perubahan</button>
+                            <a href="{{ route('user.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
+
 @endsection

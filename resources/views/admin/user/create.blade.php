@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'tambah user')
+@section('title', 'List User')
 @section('content')
 
     <div class="py-4">
@@ -15,7 +15,7 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="#">User</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Tambah User</li>
             </ol>
         </nav>
@@ -35,77 +35,48 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow components-section">
                 <div class="card-body">
-
-                    <!-- ✅ FLASH MESSAGES -->
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    @endif
-
                     @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <ul class="mb-0">
+                        <div class="alert alert-danger">
+                            <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
+                                    <li>
+                                        {{ $error }}
+                                    </li>
                                 @endforeach
                             </ul>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-
-                    <form action="{{ route('user.store') }}" method="POST">
+                    <Form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-4">
-                            <div class="col-lg-6 col-sm-6">
-                                <!-- Name -->
+                            <div class="col-lg-4 col-sm-6">
+                                <!-- First Name -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
-                                    <input type="text" id="name" name="name"
-                                        class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
-                                        required>
-                                    @error('name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <label for="name" class="form-label">Nama</label>
+                                    <input type="text" id="name" name="name" value="{{ old('name') }}"
+                                        class="form-control" required>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email <span
-                                            class="text-danger">*</span></label>
-                                    <input type="email" id="email" name="email"
-                                        class="form-control @error('email') is-invalid @enderror"
-                                        value="{{ old('email') }}" required>
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" id="email" name="email" value="{{ old('email') }}"
+                                        class="form-control" required>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-sm-6">
-                                <!-- Password -->
+                            <div class="col-lg-4 col-sm-12">
+                                <!-- password -->
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password <span
-                                            class="text-danger">*</span></label>
-                                    <input type="password" id="password" name="password"
-                                        class="form-control @error('password') is-invalid @enderror" required>
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" id="password" name="password" value="{{ old('password') }}"
+                                        class="form-control" required>
                                 </div>
-
-                                <!-- Confirm Password -->
                                 <div class="mb-3">
-                                    <label for="password_confirmation" class="form-label">Konfirmasi Password <span
-                                            class="text-danger">*</span></label>
+                                    <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
                                     <input type="password" id="password_confirmation" name="password_confirmation"
-                                        class="form-control @error('password') is-invalid @enderror" required>
-                                    @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                        value="{{ old('password_confirmation') }}" class="form-control" required>
                                 </div>
-
                                 <div class="mb-3">
                                     <label>Pilih Role</label>
                                     <select name="role" class="form-control" required>
@@ -116,13 +87,15 @@
                                     </select>
                                 </div>
 
+                                <!-- Input Foto -->
                                 <div class="mb-3">
                                     <label>Foto Profil</label>
                                     <input type="file" name="avatar" class="form-control">
                                 </div>
 
+
                                 <!-- Buttons -->
-                                <div class="mt-4">
+                                <div class="mb-3">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                     <a href="{{ route('user.index') }}" class="btn btn-outline-secondary ms-2">Batal</a>
                                 </div>
@@ -130,7 +103,9 @@
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
-@endsection
+
+@endsection 
