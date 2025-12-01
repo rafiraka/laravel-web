@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 // halaman guest
 Route::middleware('guest')->group(function () {
@@ -39,5 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['role:admin'])->prefix('admin')->group(function () {
         Route::resource('user', UserController::class);
         Route::resource('pelanggan', PelangganController::class);
+
+        Route::get('/multipleuploads', 'MultipleuploadsController@index')->name('uploads');
+        Route::post('/save', 'MultipleuploadsController@store')->name('uploads.store');
     });
 });
