@@ -7,8 +7,11 @@
             <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                 <li class="breadcrumb-item">
                     <a href="#">
-                        <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
                         </svg>
                     </a>
                 </li>
@@ -22,7 +25,8 @@
                 <p class="mb-0">Form untuk mengedit data user.</p>
             </div>
             <div>
-                <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i> Kembali</a>
+                <a href="{{ route('user.index') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i>
+                    Kembali</a>
             </div>
         </div>
     </div>
@@ -59,8 +63,9 @@
                                 <!-- Name -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
-                                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
-                                           value="{{ old('name', $dataUser->name) }}" required>
+                                    <input type="text" id="name" name="name"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name', $dataUser->name) }}" required>
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -68,9 +73,11 @@
 
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                                           value="{{ old('email', $dataUser->email) }}" required>
+                                    <label for="email" class="form-label">Email <span
+                                            class="text-danger">*</span></label>
+                                    <input type="email" id="email" name="email"
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        value="{{ old('email', $dataUser->email) }}" required>
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -81,17 +88,43 @@
                                 <!-- Password -->
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror">
+                                    <input type="password" id="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror">
                                     <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah password</small>
                                     @error('password')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
+                                <div class="mb-3">
+                                    <label>Pilih Role</label>
+                                    <select name="role" class="form-control" required>
+                                        <option value="">-- Pilih --</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}"
+                                                {{ $dataUser->hasRole($role->name) ? 'selected' : '' }}>
+                                                {{ $role->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label>Ganti Foto (Kosongkan jika tidak ingin ganti)</label>
+                                    <input type="file" name="avatar" class="form-control">
+
+                                    @if ($dataUser->avatar)
+                                        <small>Foto saat ini:
+                                            <img src="{{ asset('storage/' . $dataUser->avatar) }}" width="50">
+                                        </small>
+                                    @endif
+                                </div>
+
                                 <!-- Confirm Password -->
                                 <div class="mb-3">
                                     <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @error('password') is-invalid @enderror">
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
+                                        class="form-control @error('password') is-invalid @enderror">
                                     @error('password')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

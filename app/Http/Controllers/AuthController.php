@@ -2,62 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Menampilkan halaman login
-     */
     public function index()
     {
-        return view('login-form');
+        return view('auth.login');
     }
 
-    /**
-     * Memproses form login
-     */
     public function login(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required'
+        $input = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        $username = $request->input('username');
-        $password = $request->input('password');
+        if (Auth::attempt($input)) {
+            $request->session()->regenerate();
 
-        // Validasi custom
-        $errors = [];
-
-        // Cek password minimal 3 karakter
-        if (strlen($password) < 3) {
-            $errors[] = 'Password harus minimal 3 karakter.';
+           
+            return redirect()->intended('/dashboard'); // Arahkan User Biasa
         }
 
-        // Cek password mengandung huruf kapital
-        if (!preg_match('/[A-Z]/', $password)) {
-            $errors[] = 'Password harus mengandung minimal satu huruf kapital.';
-        }
+        // Jika Login Gagal
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
+    } // End of public function login(Request $request)
 
-        // Jika ada errors, redirect back dengan pesan
-        if (!empty($errors)) {
-            return redirect('/auth')->withErrors($errors);
-        }
+    // 3. Proses Logout
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
-        // Cek username dan password sama
-        if ($username === $password) {
-            // Login berhasil
-            return view('welcome')->with([
-                'message' => 'Login berhasil! Selamat datang ' . $username,
-                'username' => $username
-            ]);
-        } else {
-            // Login gagal
-            return redirect('/auth')->withErrors([
-                'Username dan password tidak sesuai.'
-            ]);
-        }
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
